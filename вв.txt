@@ -21,21 +21,21 @@ int main()
         {"Иванова Мария Ивановна",1990,"жен","замужем",false,"ул. Ленина, д.15"},
         {"Петрова Анастасия Сергеевна",2003,"жен","в браке не состояла ни разу",false,"ул. Ленина, д.30"},
         {"Стрелкова Анна Андреевна",1998,"жен","разведена",false,"ул. Восточная, д.37"},
-        {"Кузнецов Андрей Алексеевич",2001,"муж","в браке не состоял ни разу",false,"ул. Ленина, д.49"},
+        {"Ивницкая Диана Максимовна",1993,"жен","замужем",false,"ул. Восточная, д.37"},
         {"Мезенцева Юлия Николаевна",1995,"жен","замужем",false,"ул. Восточная, д.37"},
         {"Мезенцев Данил Витальевич",1993,"муж","женат",true,"ул. Восточная, д.37"},
     };
     People marriedwomen[8];
     int count = 0;
     for (int i = 0; i < 8; i++) {
-        if (peoples[i].gender == "жен" && peoples[i].familystatus == "замужем") {
+        if (strcmp(peoples[i].gender,"жен") == 0 && strcmp(peoples[i].familystatus, "замужем") ==0) {
             marriedwomen[count] = peoples[i];
             count++;
         }
     }
     for (int i = 0; i < count - 1; i++) {
-        for (int j = 0; j < count - 1; j++) {
-            if (marriedwomen[j].birthyear > marriedwomen[i].birthyear) {
+        for (int j = 0; j < count - 1 - i; j++) {
+            if (marriedwomen[j].birthyear > marriedwomen[j+1].birthyear) {
                 People kopia = marriedwomen[j];
                 marriedwomen[j] = marriedwomen[j+1];
                 marriedwomen[j + 1] = kopia;
@@ -43,8 +43,8 @@ int main()
         }
     }
     std::cout << "Упорядоченный по году рождения список женщин, которые состоят в браке.";
-
+    std::cout << std::endl;
     for (int i = 0; i < count; i++) {
-        std::cout << "ФИО: " << marriedwomen[i].FIO << std::endl;
+        std::cout << "ФИО: " << marriedwomen[i].FIO <<" " << marriedwomen[i].birthyear << std::endl;
     }
 }
